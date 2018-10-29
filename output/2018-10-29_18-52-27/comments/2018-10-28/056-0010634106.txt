@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1504735942	6nqX0	군 뱅기 보내서 탈출 시킨다 하니 난 사이판에 전쟁난줄 알았음. ㅎㅎㅎ 쇼~~~~~	2018-10-28T11:55:43+0900	0	1
