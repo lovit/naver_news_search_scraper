@@ -31,28 +31,30 @@ searching_news_comments.py 파일을 실행하면 output 폴더에 뉴스와 댓
 
 기본 arguments 를 기준으로 설명합니다. 수집된 데이터의 기본 저장 위치는 ../output/ 입니다.
 
-header 를 입력하면 output 폴더 아래에 header 의 이름으로 폴더가 생깁니다. diplomacy 폴더는 --header diplomacy 를 입력한 경우입니다. diplomacy 아래에 news 와 comments 폴더가 생성되며, news 폴더 아래에는 각 일자별 뉴스 (.txt) 와 뉴스의 인덱스 (.index) 파일이 생성됩니다. comments 에는 댓글이 존재하는 기사의 댓글이 tap 으로 분리되는 tsv 파일 형식으로 저장됩니다.
+header 를 입력하면 output 폴더 아래에 header 의 이름으로 폴더가 생깁니다. diplomacy 폴더는 --header diplomacy 를 입력한 경우입니다. diplomacy 아래에는 query term 의 순서에 따라서 0 부터 폴더가 생성됩니다. 그 아래에 news 와 comments 폴더가 생성되며, news 폴더 아래에는 각 일자별 뉴스 (.txt) 와 뉴스의 인덱스 (.index) 파일이 생성됩니다. comments 에는 댓글이 존재하는 기사의 댓글이 tap 으로 분리되는 tsv 파일 형식으로 저장됩니다.
 
 header 를 입력하지 않을 경우 스크립트를 실행시킨 시각 (초 단위까지)으로 폴더가 생성됩니다. 이때는 뉴스와 인덱스 파일에 header 가 붙지 않습니다.
 
     --| naver_news_search_crawler
     --| output
         --| diplomacy
-            --| news
-                --| 2018-10-26_diplomacy.txt
-                --| 2018-10-26_diplomacy.index
-            --| comments
-                --| 001-0010429592.txt
-                --| 001-0010429850.txt
-                --| ...
+            --| 0
+                --| news
+                    --| 2018-10-26_diplomacy.txt
+                    --| 2018-10-26_diplomacy.index
+                --| comments
+                    --| 001-0010429592.txt
+                    --| 001-0010429850.txt
+                    --| ...
         --| 2018-10-29_18-52-27
-            --| news
-                --| 2018-10-26.txt
-                --| 2018-10-26.index
-            --| comments
-                --| 001-0010429592.txt
-                --| 001-0010429850.txt
-                --| ...
+            --| 0
+                --| news
+                    --| 2018-10-26.txt
+                    --| 2018-10-26.index
+                --| comments
+                    --| 001-0010429592.txt
+                    --| 001-0010429850.txt
+                    --| ...
 
 
 ## News 파일 구조
