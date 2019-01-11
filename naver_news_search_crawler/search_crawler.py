@@ -65,6 +65,7 @@ def _article_num_to_page_num(num_articles):
 def _extract_urls_from_search_result(search_result_url, num_articles, verbose=True, debug=True):
     urls = set()
     num_pages = _article_num_to_page_num(num_articles)
+    page = 0
     for page in range(num_pages):
         urls_in_page = _parse_urls_from_page(search_result_url, page)
         urls.update(urls_in_page)
