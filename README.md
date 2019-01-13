@@ -19,13 +19,29 @@ searching_news_comments.py 파일을 실행하면 output 폴더에 뉴스와 댓
 | --- | --- | --- |
 | --root_directory | ../output/ | 수집된 뉴스와 댓글의 저장 위치 |
 | --begin_date | 2018-10-26 | yyyy-mm-dd 형식으로 입력되는 데이터 수집의 첫 날 |
-| --end_date | 2018-10-26 | yyyy-mm-dd 형식으로 입력되는 데이터 수집의 마지막 날 |
+| --end_date | 2018-10-28 | yyyy-mm-dd 형식으로 입력되는 데이터 수집의 마지막 날 |
 | --sleep | 0.1 | 네이버 뉴스 사이트에 부하를 주지 않기 위한 여유시간. 단위는 초. 이 시간이 짧으면 네이버로부터 공격성 접근으로 인식되어 접속이 차단될 수 있습니다 |
 | --header | None | news 파일과 저장 폴더의 이름입니다. 아래에서 자세히 이야기합니다 |
 | --query_file | queries.txt | 질의어가 입력된 텍스트 파일. 한 줄에 하나의 단어를 입력합니다 |
 | --debug | False | --debug 입력 시 True, 각 일자별로 3 페이지의 뉴스와 댓글만 수집합니다 |
 | --verbose | False | --verbose 입력 시 True, 진행 상황을 자세히 보여줍니다|
 | --comments | False | --comments 입력 시 True, 각 뉴스에 해당하는 댓글을 함께 수집합니다|
+
+## Query file 구성
+
+질의어가 담긴 `query_file` (예시 코드의 query.txt) 은 세 가지 형태로 구성할 수 있습니다.
+
+첫째는 질의어만을 입력하는 것으로 `외교`만 입력하면 0 이라는 폴더에 기본 날짜인 `begin_date` 부터 `end_date` 사이의 기사를 수집합니다.
+
+둘째는 질의어와 저장 폴더 이름을 지정하는 것으로, `경제`는 `economic` 이라는 폴더에 기본 날짜인 `begin_date` 부터 `end_date` 사이의 기사를 수집합니다.
+
+셋째는 질의어, 저장 폴더 이름, 기사 수집과 종료 날짜를 모두 기록하는 것으로, 기본 날짜와 관계 없이 `2018-01-01` 부터 `2018-01-03` 사이의 기사를 수집합니다.
+
+```
+외교
+경제	economic
+사회	social	2018-01-01	2018-01-03
+```
 
 ## Directory structure
 
