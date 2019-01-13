@@ -157,13 +157,16 @@ class SearchCrawler:
                     print('Exception: {}\n{}'.format(url, str(e)))
                     continue
 
-            self._save_news_as_corpus(scrap_date, docs, indexs)
-            if self.comments:
-                self._save_comments(scrap_date, indexs, comments)
-
             if self.verbose:
                 print('\r  .. search crawler saved {} articles in {} on {}\n\n'
                               .format(len(urls), len(urls), year+month+date))
+
+            if not docs:
+                continue
+
+            self._save_news_as_corpus(scrap_date, docs, indexs)
+            if self.comments:
+                self._save_comments(scrap_date, indexs, comments)
 
         if self.verbose:
             print('Search Crawling For Query [{}] Time Between [{}] ~ [{}] Finished'
