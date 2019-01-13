@@ -1,6 +1,35 @@
 import argparse
+import os
 from datetime import datetime
 from search_crawler import SearchCrawler
+
+def parse_query_file(query_file, begin_date, end_date):
+    """
+    query_file : str
+        query.txt file path
+    begin_date : str
+        Default begin_date
+    end_date : str
+        Default end_date
+    """
+    with open(query_file, encoding='utf-8') as f:
+        docs = [doc.strip().split() for doc in f]
+    if not docs:
+        raise ValueError('Query file must be inserted')
+    args = []
+    for i, cols in enumerate(docs):
+        query = cols[0]
+        outname = '%d'%i
+        bd = begin_date
+        ed = end_date
+
+        if len(cols) == 2:
+            out = cols[1]
+        elif len(cols) == 4:
+            bd = cols[2]
+            ed = cols[3]
+        args.append((query, outname, bd, ed))
+    return args
 
 def main():
     parser = argparse.ArgumentParser()
@@ -29,17 +58,16 @@ def main():
     root_directory += '/%s/' % root_header
 
     query_file = args.query_file
-    try:
-        with open(query_file, encoding='utf-8') as f:
-            queries = [query.strip() for query in f]
-            queries = [query for query in queries if query]
-    except:
+    if not os.path.exists(query_file):
         raise ValueError('Query file are not found: {}'.format(query_file))
 
-    for query_idx, query in enumerate(queries):
-        directory = '{}/{}/'.format(root_directory, query_idx)
+    scraping_args = parse_query_file(query_file, begin_date, end_date)
+    for query, outname, bd, ed in scraping_args:
+        directory = '{}/{}/'.format(root_directory, outname)
+        if bd > ed:
+            continue
         crawler = SearchCrawler(directory, VERBOSE, DEBUG, GET_COMMENTS, header, sleep)
-        crawler.search(query, begin_date, end_date)
+        crawler.search(query, bd, ed)
 
 if __name__ == '__main__':
     main()
