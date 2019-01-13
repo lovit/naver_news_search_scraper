@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1522437131		이 기자 기사들 댓글 보면, 정부 빠는 메크로 돌림. 이상현, 너 뭐냐?	2018-10-29T18:02:36+0900	0	0

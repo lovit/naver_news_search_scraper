@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1187172974		민중당은 북한과 내통중이니 한번 RO조직만들어 한 번 해볼려고 그러나?	2018-01-02T18:47:45+0900	1	0

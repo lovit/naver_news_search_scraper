@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1579872584		애시당초 저 두나라에 볼거나 있나?	2018-12-09T23:34:52+0900	0	0

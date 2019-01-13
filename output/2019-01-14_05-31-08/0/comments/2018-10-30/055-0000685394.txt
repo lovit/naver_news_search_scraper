@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1496457203		이나라 조선은 2백년뒤에도 똑같은말할듯	2018-10-30T18:11:42+0900	0	1

@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1495546943		어중하게 대응하니 주변국이 우습게 보는거다. 구국방에는 이스라엘차럼 확실하게 대응해야 한다. 중국이 찝적대는 것은 문제인정부의 우우부단이 문제다.	2018-10-29T20:36:06+0900	0	0

@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1521663381		죄다 젊은것들이네 뉴스보니 아후 저런것들 태풍온다해도 관광 쳐나갔는데 군수송기라 ㅋㅋㅋㅋㅋ ㅅㅂ 완전멋져 아 ㅅㅂ ㅋㅋㅋㅋ	2018-10-29T02:39:52+0900	0	0

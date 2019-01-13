@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1535281634		사회적 경제가 아니라,,사회주의적 경제 체제로 갈려고 지금 밑 밥 깔아 놓는거지...	2018-10-28T09:55:01+0900	0	0

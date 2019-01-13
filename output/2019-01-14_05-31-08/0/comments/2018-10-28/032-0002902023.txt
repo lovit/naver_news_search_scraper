@@ -1,0 +1,3 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1494478143		내일 정말 출근하기 싫겠어요!	2018-10-28T22:21:22+0900	0	0
+1494471823		오늘 온 사람은 출근하겠네.	2018-10-28T22:10:42+0900	3	0

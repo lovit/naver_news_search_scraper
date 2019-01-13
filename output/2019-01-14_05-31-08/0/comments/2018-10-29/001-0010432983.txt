@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1505899382		이상현 기자. 매일 문재인 정부 빠는 기사에, 댓글 메크로에. 왜 그래야만 하니?	2018-10-29T18:07:25+0900	0	1

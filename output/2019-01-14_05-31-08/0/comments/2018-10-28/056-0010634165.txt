@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1521381141		수송은 잘한건데 군 수송기 운송 비용은? 청구해야 마땅하지	2018-10-28T17:48:44+0900	0	0

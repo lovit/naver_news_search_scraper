@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1537925474		이럴줄알았지	2018-10-30T22:47:53+0900	0	0

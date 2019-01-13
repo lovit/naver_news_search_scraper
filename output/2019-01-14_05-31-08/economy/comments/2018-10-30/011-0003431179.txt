@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1497232023		정말 열심히 일하시는 회장님 존경합니다!	2018-10-31T15:43:07+0900	0	0

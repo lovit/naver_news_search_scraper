@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1507171582		아가리로 반일 조장하고 사기치고 국내적으로 이용해먹고 한일관계는 문제 없애야 된다? ㅋㅋㅋㅋ	2018-10-30T22:43:01+0900	0	0

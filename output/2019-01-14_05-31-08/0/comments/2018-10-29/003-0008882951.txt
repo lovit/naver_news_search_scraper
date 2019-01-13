@@ -1,0 +1,2 @@
+comment_no	user_id_no	contents	reg_time	sympathy_count	antipathy_count
+1495545193		고생 많으셨습니다. 고맙습니다.	2018-10-29T20:34:49+0900	1	1
