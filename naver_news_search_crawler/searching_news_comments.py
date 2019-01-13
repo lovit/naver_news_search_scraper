@@ -13,7 +13,7 @@ def parse_query_file(query_file, begin_date, end_date):
         Default end_date
     """
     with open(query_file, encoding='utf-8') as f:
-        docs = [doc.strip().split() for doc in f]
+        docs = [doc.strip().split('\t') for doc in f]
     if not docs:
         raise ValueError('Query file must be inserted')
     args = []
@@ -23,9 +23,9 @@ def parse_query_file(query_file, begin_date, end_date):
         bd = begin_date
         ed = end_date
 
-        if len(cols) == 2:
-            out = cols[1]
-        elif len(cols) == 4:
+        if len(cols) >= 2:
+            outname = cols[1]
+        if len(cols) == 4:
             bd = cols[2]
             ed = cols[3]
         args.append((query, outname, bd, ed))
