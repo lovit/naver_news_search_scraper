@@ -81,10 +81,10 @@ def _extract_urls_from_search_result(search_result_url, num_articles, verbose=Tr
 
 def _parse_urls_from_page(base_url, page):
 
-    url_patterns = ('a[href^=https://news.naver.com/main/read.nhn?]',
-            'a[href^=https://entertain.naver.com/main/read.nhn?]',
-            'a[href^=https://sports.news.naver.com/sports/index.nhn?]',
-            'a[href^=https://news.naver.com/sports/index.nhn?]')
+    url_patterns = ('a[href^="https://news.naver.com/main/read.nhn?"]',
+            'a[href^="https://entertain.naver.com/main/read.nhn?"]',
+            'a[href^="https://sports.news.naver.com/sports/index.nhn?"]',
+            'a[href^="https://news.naver.com/sports/index.nhn?"]')
 
     urls_in_page = set()
     page_url = '{}&start={}&refresh_start=0'.format(base_url, 1 + 10*(page-1))
