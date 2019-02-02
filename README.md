@@ -7,6 +7,10 @@ Python 3 로 작성되었습니다. 아래의 패키지를 이용합니다.
 
 설치는 git clone 으로 코드를 받거나 downloads 를 합니다.
 
+## BeautifulSoup4 버전 이슈
+
+코드 작성 당시 BeautifulSoup4 의 버전이 4.6.x 이하였으며, 4.7.x 에서 작동하지 않는 부분이 있었습니다 (Issue #1 참고). 이 부분이 수정되었으니, 4.7.x 이후의 버전을 쓰시는 분은 git pull 을 한 번 하시기 바랍니다 (작성일 2019.02.02 23:20)
+
 ## Usage
 
 실행 코드는 Python 으로 py 파일을 실행합니다. naver_news_search_crawler 폴더로 이동합니다.
