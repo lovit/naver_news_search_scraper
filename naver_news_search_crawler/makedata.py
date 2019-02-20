@@ -43,7 +43,7 @@ def make_news_data(scrap_directory, output_directory, begin, end, monthly, selec
         zipname_paths = group_by_datetime(source_paths, monthly)
 
         for zipname, paths in sorted(zipname_paths.items()):
-            zippath = '{}/{}.zip'.format(query_dir, zipname)
+            zippath = '{}/news/{}.zip'.format(query_dir, zipname)
             zippath = zippath.replace(scrap_directory, output_directory, 1)
             dirname = os.path.dirname(zippath)
             if not os.path.exists(dirname):
@@ -52,6 +52,33 @@ def make_news_data(scrap_directory, output_directory, begin, end, monthly, selec
             with zipfile.ZipFile(zippath, 'w') as zipf:
                 for file in paths:
                     zipf.write(file, os.path.basename(file), compress_type=zipfile.ZIP_DEFLATED)
+            print('compressed {}'.format(zippath))
+
+def make_comment_data(scrap_directory, output_directory, begin, end, monthly, selected_queries):
+    scrap_directory = os.path.abspath(scrap_directory)
+    output_directory = os.path.abspath(output_directory)
+    query_dirs = sorted(glob('{}/*'.format(scrap_directory)))
+    if selected_queries is not None:
+        query_dirs = [p for p in query_dirs if p.split('/')[-1] in selected_queries]
+
+    for query_dir in query_dirs:
+        source_paths = sorted(glob('{}/comments/*'.format(query_dir)))
+        source_paths = [p for p in source_paths if path_date_match(begin, end, p)]
+        zipname_paths = group_by_datetime(source_paths, monthly)
+
+        for zipname, paths in sorted(zipname_paths.items()):
+            zippath = '{}/comments/{}.zip'.format(query_dir, zipname)
+            zippath = zippath.replace(scrap_directory, output_directory, 1)
+            dirname = os.path.dirname(zippath)
+            if not os.path.exists(dirname):
+                os.makedirs(dirname)
+
+            with zipfile.ZipFile(zippath, 'w') as zipf:
+                for date_dir in paths:
+                    date_dir = os.path.abspath(date_dir)
+                    files = glob(date_dir + '/*.txt')
+                    for file in files:
+                        zipf.write(file, '/'.join(file.split('/')[-2:]), compress_type=zipfile.ZIP_DEFLATED)
             print('compressed {}'.format(zippath))
 
 def main():
@@ -76,6 +103,8 @@ def main():
     monthly = args.monthly
 
     make_news_data(scrap_directory, output_directory, begin_date, end_date, monthly, queries)
+    if comments:
+        make_comment_data(scrap_directory, output_directory, begin_date, end_date, monthly, queries)
 
 if __name__ == '__main__':
     main()
