@@ -30,10 +30,12 @@ def group_by_datetime(paths, monthly=True):
         key_to_path[key].append(path)
     return dict(key_to_path)
 
-def make_news_data(scrap_directory, output_directory, begin, end, monthly):
+def make_news_data(scrap_directory, output_directory, begin, end, monthly, selected_queries):
     scrap_directory = os.path.abspath(scrap_directory)
     output_directory = os.path.abspath(output_directory)
     query_dirs = sorted(glob('{}/*'.format(scrap_directory)))
+    if selected_queries is not None:
+        query_dirs = [p for p in query_dirs if p.split('/')[-1] in selected_queries]
 
     for query_dir in query_dirs:
         source_paths = sorted(glob('{}/news/*'.format(query_dir)))
@@ -58,6 +60,7 @@ def main():
     parser.add_argument('--output_directory', type=str, default='./', help='Petitions archive directory')
     parser.add_argument('--begin_date', type=str, default='2013-01-01', help='Begin data yyyy-mm-dd format')
     parser.add_argument('--end_date', type=str, default='2018-08-01', help='End data yyyy-mm-dd format')
+    parser.add_argument('--queries', type=str, nargs='*', default=None, help='Selected directories')
     parser.add_argument('--comments', dest='comments', action='store_true')
     parser.add_argument('--monthly', dest='monthly', action='store_true', help='A compressed file for a month')
 
@@ -66,10 +69,13 @@ def main():
     output_directory = args.output_directory
     begin_date = convert_str_date_to_datetime(args.begin_date)
     end_date = convert_str_date_to_datetime(args.end_date)
+    queries = args.queries
+    if queries is not None:
+        queries = set(queries)
     comments = args.comments
     monthly = args.monthly
 
-    make_news_data(scrap_directory, output_directory, begin_date, end_date, monthly)
+    make_news_data(scrap_directory, output_directory, begin_date, end_date, monthly, queries)
 
 if __name__ == '__main__':
     main()
