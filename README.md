@@ -107,7 +107,7 @@ index 파일은 네 가지 정보로 구성된 tap separated value (tsv) 형식�
 | column | example | note |
 | --- | --- | --- |
 | comment_no | 1514778615 | 댓글 고유 아이디 |
-| user_id_no | 6EVlK | 댓글 등록자 아이디의 해쉬값 |
+| user_id_no | 6EVlK | 댓글 등록자 아이디의 해쉬값. 혹은 해쉬값이 제공되지 않을 경우 끝의 글자가 마스킹된 사용자 이름 |
 | contents | 좋은 방향으로 얘기 잘 되었으면.. | 댓글 내용 |
 | reg_time | 2018-10-28T23:41:26+0900 | 댓글 등록 시각 | 
 | sympathy_count | 0 | 댓글 공감 수 |
