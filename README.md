@@ -2,10 +2,14 @@
 
 Python 3 로 작성되었습니다. 아래의 패키지를 이용합니다.
 
-- beautifulsoup4 >= 4.6.0
+- beautifulsoup4 >= 4.7.1
 - requiests >= 2.14.2
 
 설치는 git clone 으로 코드를 받거나 downloads 를 합니다.
+
+## Python 버전 이슈
+
+Python 3.7.x 에서 일부 뉴스의 본문이 제대로 스크랩 되지 않는 이슈가 있습니다. 3.6.x 에서는 제대로 작동합니다.
 
 ## BeautifulSoup4 버전 이슈
 
