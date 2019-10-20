@@ -64,4 +64,6 @@ def _parse_comment(comment_json):
     contents = comment_json['contents'].replace('\t', ' ').replace('\r', ' ').replace('\n', ' ')
     reg_time = comment_json['regTime']
     user_id_no = comment_json['userIdNo']
+    if not user_id_no:
+        user_id_no = comment_json['userName']
     return (comment_no, user_id_no, contents, reg_time, sympathy_count, antipathy_count)
