@@ -19,7 +19,9 @@ Python 3.7.x 에서 일부 뉴스의 본문이 제대로 스크랩 되지 않는
 
 실행 코드는 Python 으로 py 파일을 실행합니다. naver_news_search_crawler 폴더로 이동합니다.
 
-    python searching_news_comments.py --verbose --debug --comments
+```
+python searching_news_comments.py --verbose --debug --comments
+```
 
 searching_news_comments.py 파일을 실행하면 output 폴더에 뉴스와 댓글이 저장됩니다. 이 파일은 몇 가지 arguments 를 제공합니다.
 
@@ -34,6 +36,13 @@ searching_news_comments.py 파일을 실행하면 output 폴더에 뉴스와 댓
 | --debug | False | --debug 입력 시 True, 각 일자별로 3 페이지의 뉴스와 댓글만 수집합니다 |
 | --verbose | False | --verbose 입력 시 True, 진행 상황을 자세히 보여줍니다|
 | --comments | False | --comments 입력 시 True, 각 뉴스에 해당하는 댓글을 함께 수집합니다|
+
+수집된 데이터는 날짜별로 구분되어 각각 텍스트 파일로 저장됩니다. 이를 하나의 파일로 병합하기 위해서 다음의 스크립트를 실행하면 됩니다. 예시 데이터의 `../output/2019-01-14_05-31-08/economy` 내에 있는 뉴스 기사와 뉴스 기사 인덱스, 댓글은 각각 다음의 파일에 저장됩니다. `../output/2019-01-14_05-31-08/economy.txt`, `../output/2019-01-14_05-31-08/economy.index`, `../output/2019-01-14_05-31-08/economy.comment.txt`
+
+```
+python merging_scrap_results.py --directory ../output/2019-01-14_05-31-08/economy
+```
+
 
 ## Query file 구성
 
