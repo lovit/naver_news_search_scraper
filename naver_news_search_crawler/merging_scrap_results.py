@@ -34,7 +34,13 @@ def main():
     index_file = '{}.index'.format(fileprefix)
     merge(index_paths, index_file)
 
+    comment_paths = sorted(glob.glob('{}/comments/*/*.txt'.format(directory)))
+    comment_file = '{}.comment.txt'.format(fileprefix)
+    if not comment_paths:
+        return
+
     header = 'press-article comment_no user_id_no contents reg_time sympathy_count antipathy_count'.replace(' ', '\t')
+    merge(comment_paths, comment_file, header)
 
 if __name__ == '__main__':
     main()
