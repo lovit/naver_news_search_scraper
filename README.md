@@ -1,6 +1,6 @@
 ## Notice
 
-최근 뉴스 스크랩이 되지 않는 현상을 발견하였습니다 (관련이슈 #3). 이 내용이 해결되면 이 notice 를 제거하겠습니다.
+최근 뉴스 스크랩이 되지 않는 현상을 발견하였습니다 (관련이슈 [#3](https://github.com/lovit/naver_news_search_scraper/issues/3)). 이 내용이 해결되면 이 notice 를 제거하겠습니다.
 
 ## Install
 
