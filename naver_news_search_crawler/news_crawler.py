@@ -15,6 +15,7 @@ from config import debug
 from config import verbose
 from config import version
 from config import SLEEP
+from config import default_header
 
 
 _info_to_crawl = ('sid1', 'sid2', 'oid', 'aid', 'url',
@@ -60,11 +61,12 @@ def _extract_content_as_dict(url):
     json_dict = remove_unnecessary_info_from_json_dict(json_dict)
     return json_dict
 
+#solving RemoteDisconnected error
 def _parse_and_redirect_url(url):
 
     def redirect(url):
         try:
-            response = requests.get(url)
+            response = requests.get(url, headers = default_header)
             redirected_url = response.url if response.history else url
             return redirected_url
         except Exception as e:
