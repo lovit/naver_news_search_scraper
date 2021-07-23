@@ -11,35 +11,80 @@ from utils import get_soup
 from utils import get_path
 from utils import url_encode
 
-
+#update pagenum
 def get_article_urls(query, start_date, end_date=None, verbose=True, debug=True):
     if end_date == None:
         end_date = start_date
 
     search_result_url = _get_search_result_url(query, start_date, end_date)
-    num_articles = _parse_article_num(search_result_url)
+    pagenum = get_page_num(search_result_url)
     if verbose:
         print('Search From %s' % search_result_url)
-        print('Total Article Numbers: {} ({} ~ {}, {})'.format(num_articles, start_date, end_date, query))
+        print('Total Article: {} pages ({} ~ {}, {})'.format(pagenum, start_date, end_date, query))
 
     urls = _extract_urls_from_search_result(
-        search_result_url, num_articles, verbose, debug)
+        search_result_url, pagenum, verbose, debug)
     return urls
 
+#incompatible
 def get_article_num(query, start_date, end_date=None):
     if end_date == None:
         end_date = start_date
     search_result_url = _get_search_result_url(query, start_date, end_date)
     return _parse_article_num(search_result_url)
 
+#maximum articles : 4,000    
+def get_page_num(search_result_url, limit = 400):
+    try:
+        soup = get_soup(search_result_url)
+        if not soup:
+            return 0
+        url_e = "{}&start={}".format(search_result_url, (limit - 1) * 10 + 1)
+        if _check_page_result(url_e) :
+            #test
+            print(url_e)
+            return limit
+
+        s = 1
+        e = limit
+        pagenum = (s + e)//2
+        while(s < pagenum) :
+            article_num = (pagenum - 1) * 10 + 1
+            url_p = "{}&start={}".format(search_result_url, article_num)
+            #test
+            #print("page : {} | {}".format(pagenum, url_p))
+            
+            if _check_page_result(url_p):
+                #test
+                s = pagenum
+            else :
+                e = pagenum
+            pagenum = (s + e)//2
+            
+        return pagenum
+    
+    except Exception as e:
+        raise ValueError('Failed to get the page number of query : %s' % str(e))
+
+def _check_page_result(url): 
+    soup = get_soup(url)
+    res =  len(soup.select('div[class=api_noresult_wrap]'))
+    return False if res else True
+
+#incompatible
 def _parse_article_num(search_result_url):
     try:
         soup = get_soup(search_result_url)
         if not soup:
             return 0
         result_header_text = soup.select('div[class=section_head] div[class^=title_desc] span')
+        #result_header_text = soup.select('div[class=news_info] div[class=info_group] a[href]')
         if not result_header_text:
+            #test
+            print("not result_header")
             return 0
+        #test
+        print(result_header_text)
         result_header_text = result_header_text[0].text
         result_header_text = re.findall('[,\\d]+건', result_header_text)[0]
         result_header_text = re.sub(',', '', result_header_text) # Remove Comma
@@ -50,21 +95,21 @@ def _parse_article_num(search_result_url):
         raise ValueError('Failed to get total number of articles %s' % str(e))
 
 def _get_search_result_url(query, start_date, end_date):
-        url_prefix = 'https://search.naver.com/search.naver?where=news&query={0}&sm=tab_opt&sort=0&photo=0&field=0&reporter_article=&pd=3&ds={1}&de={2}'
+        url_prefix = 'https://search.naver.com/search.naver?where=news&query={0}&sm=tab_opt&sort=1&photo=0&field=0&reporter_article=&pd=3&ds={1}&de={2}'
         start_date_ = start_date.replace('-', '.')
         end_date_ = end_date.replace('-', '.')
         search_result_url = url_prefix.format(url_encode(query), start_date_, end_date_)
         return search_result_url
 
+#incompatible
 def _article_num_to_page_num(num_articles):
     num_pages = num_articles // 10
     if num_articles % 10 != 0:
         num_pages += 1
     return num_pages
 
-def _extract_urls_from_search_result(search_result_url, num_articles, verbose=True, debug=True):
+def _extract_urls_from_search_result(search_result_url, num_pages, verbose=True, debug=True):
     urls = set()
-    num_pages = _article_num_to_page_num(num_articles)
     page = 0
     for page in range(num_pages):
         urls_in_page = _parse_urls_from_page(search_result_url, page)
@@ -79,20 +124,27 @@ def _extract_urls_from_search_result(search_result_url, num_articles, verbose=Tr
 
     return urls
 
+#update ul class name
 def _parse_urls_from_page(base_url, page):
-
-    url_patterns = ('a[href^="https://news.naver.com/main/read.nhn?"]',
+    #test
+    '''url_patterns = ('a[href^="https://news.naver.com/main/read.nhn?"]',
             'a[href^="https://entertain.naver.com/main/read.nhn?"]',
             'a[href^="https://sports.news.naver.com/sports/index.nhn?"]',
-            'a[href^="https://news.naver.com/sports/index.nhn?"]')
+            'a[href^="https://news.naver.com/sports/index.nhn?"]')'''
+    url_patterns = ('a[href^="https://news.naver.com/main/read.naver?"]',
+            'a[href^="https://entertain.naver.com/main/read.naver?"]',
+            'a[href^="https://sports.news.naver.com/sports/index.naver?"]',
+            'a[href^="https://news.naver.com/sports/index.naver?"]')
 
     urls_in_page = set()
     page_url = '{}&start={}&refresh_start=0'.format(base_url, 1 + 10*(page-1))
     soup = get_soup(page_url)
     if not soup:
+        #test
+        print("not soup")
         return urls_in_page
     try:
-        article_blocks = soup.select('ul[class=type01]')[0]
+        article_blocks = soup.select('ul[class=list_news]')[0]
         for pattern in url_patterns:
             article_urls = [link['href'] for link in article_blocks.select(pattern)]
             urls_in_page.update(article_urls)
